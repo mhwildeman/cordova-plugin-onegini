@@ -22,7 +22,6 @@ const url = require('url');
 const https = require('https');
 const execSync = require('child_process').execSync;
 const debug = require('debug')('resolve_dependencies');
-const q = require('q');
 
 const pluginId = 'cordova-plugin-onegini';
 const extractedConfigPlugin = 'cordova-plugin-onegini-extracted-config';
@@ -49,7 +48,7 @@ let sdkDownloadPath;
 
 module.exports = function (context) {
   const platform = context.opts.plugin.platform;
-  const deferral = q.defer();
+  const deferral = require('q').defer();
 
   // We only want to invoke the plugin for the iOS platform since it doesn't make any sense to resolve the iOS SDK dependencies when
   // you only have the Android platform installed.
